@@ -17,7 +17,7 @@ class Page
     @element_path = element_path
     headline_length = @raw_page_nokogiri.css(@element_path).count
     i = 0
-    until i == headline_length
+    until (i == headline_length) || (i == 20)
       @headlines.push(@raw_page_nokogiri.css(@element_path)[i].text)
       i += 1
     end
@@ -38,7 +38,6 @@ class PageBooker < Page
 
   def self.get_bbc
     bbc = Page.new("http://www.bbc.com/news")
-    # bbc.get_headlines_length
     bbc.get_headlines_text( ".title-link__title-text")
     bbc.print_headlines
   end
@@ -76,8 +75,8 @@ end
 
 # Driver code
 
-PageBooker.get_bbc
+# PageBooker.get_bbc
 PageBooker.get_nyt
-PageBooker.get_lat
-PageBooker.get_pol
-PageBooker.get_ft
+# PageBooker.get_lat
+# PageBooker.get_pol
+# PageBooker.get_ft
